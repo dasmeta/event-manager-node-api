@@ -1,0 +1,37 @@
+{
+  "name": "@dasmeta/event-manager-node-api",
+  "version": "1.0.0",
+  "description": "Extended event publishing PubSub/Kafka package.",
+  "main": "src/index.js",
+  "private": false,
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "echo 'ok'",
+    "prettier": "prettier --write 'src/**/*.js'",
+    "kafkaExample1": "MQ_CLIENT_NAME='Kafka' KAFKA_BROKERS='127.0.0.1:29092' node example1.js",
+    "kafkaExample2": "MQ_CLIENT_NAME='Kafka' KAFKA_BROKERS='127.0.0.1:29092' node example2.js",
+    "PubSubExample1": "PUBSUB_EMULATOR_HOST='localhost:8085' PUBSUB_PROJECT_ID='YOUR_GCLOUD_PROJECT_ID' GCLOUD_PROJECT='YOUR_GCLOUD_PROJECT_ID' node example1.js",
+    "PubSubExample2": "PUBSUB_EMULATOR_HOST='localhost:8085' PUBSUB_PROJECT_ID='YOUR_GCLOUD_PROJECT_ID' GCLOUD_PROJECT='YOUR_GCLOUD_PROJECT_ID' node example2.js"
+  },
+  "dependencies": {
+    "@bugsnag/js": "^6.4.0",
+    "@google-cloud/pubsub": "^2.5.0",
+    "mongodb": "^3.3.2",
+    "uuid": "^3.3.3"
+  },
+  "devDependencies": {
+    "prettier": "^1.18.2"
+  },
+  "keywords": [
+    "dasmeta",
+    "node",
+    "node-api",
+    "event-manager",
+    "pubsub",
+    "kafka",
+    "subscribe",
+    "publish"
+  ],
+  "author": "Vahe Chakhalyan <vahe@dasmeta.com> (https://www.dasmeta.com/)",
+  "license": "ISC"
+}
