@@ -1,6 +1,6 @@
 {
   "name": "@dasmeta/event-manager-node-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Extended event publishing PubSub/Kafka package.",
   "main": "src/index.js",
   "private": false,
@@ -33,5 +33,5 @@
     "publish"
   ],
   "author": "Vahe Chakhalyan <vahe@dasmeta.com> (https://www.dasmeta.com/)",
-  "license": "ISC"
+  "license": "Apache-2.0"
 }
