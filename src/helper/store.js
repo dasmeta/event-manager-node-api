@@ -450,7 +450,7 @@ module.exports = {
     async getErrors(topic, subscription) {
         const subscriptionCollection = await getCollection("event_subscription");
 
-        return subscriptionCollection
+        return await subscriptionCollection
             .aggregate([
                 {
                     $match: {

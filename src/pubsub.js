@@ -1,8 +1,8 @@
 const EventEmitter = require("events");
-const { PubSub } = require("@google-cloud/pubsub/build/src/index");
 const logger = require("./helper/logger");
+const {clientFactory} = require("./adapter/clientFactory");
 
-const mqClient = new PubSub({ projectId: process.env.GCLOUD_PROJECT });
+const mqClient = clientFactory.createClient();
 
 const topicsMap = new Map();
 const topicsWaiting = new Map();
@@ -47,26 +47,21 @@ async function getSubscription(topicName, subscriptionName) {
     const topic = await getTopic(topicName);
     const subscription = topic.subscription(subscriptionName);
     const [exists] = await subscription.exists();
-    if (!exists) {
-        if (logger.isDebug()) {
-            logger.debug(`SUBSCRIPTION "${subscriptionName}" NOT EXISTS, creating...`);
-            logger.timeStart(`SUBSCRIPTION CREATED "${subscriptionName}"`);
-        }
-        //const [subscription /*, apiResponse*/] =
-        await mqClient.createSubscription(topic, subscriptionName, {
-            flowControl: {
-                maxMessages: 1,
-            },
-            ackDeadlineSeconds: 60, // max 10 min
-            //messageRetentionDuration: 4 * 60 * 60, // max 7 day
-            //retainAckedMessages: true,
-        });
-        if (logger.isDebug()) {
-            logger.timeEnd(`SUBSCRIPTION CREATED "${subscriptionName}"`);
-        }
-        return topic.subscription(subscriptionName);
+    if (exists) {
+        return subscription;
     }
-    return subscription;
+
+    if (logger.isDebug()) {
+        logger.debug(`SUBSCRIPTION "${subscriptionName}" NOT EXISTS, creating...`);
+        logger.timeStart(`SUBSCRIPTION CREATED "${subscriptionName}"`);
+    }
+    await subscription.create();
+
+    if (logger.isDebug()) {
+        logger.timeEnd(`SUBSCRIPTION CREATED "${subscriptionName}"`);
+    }
+
+    return topic.subscription(subscriptionName);
 }
 
 module.exports = {

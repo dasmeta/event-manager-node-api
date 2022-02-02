@@ -18,6 +18,7 @@ const subscriptionHandler = (topic, subscription, handler, maxAttempts = 5) => a
             if (logger.isDebug()) {
                 logger.debug(`SKIP event subscription: "${eventSubscription}", current subscription: ${subscription}`);
             }
+            message.ack();
             return;
         }
         const fulfilled = async () => {
@@ -64,6 +65,9 @@ const subscriptionHandler = (topic, subscription, handler, maxAttempts = 5) => a
             }
             if (logger.isDebug()) {
                 logger.debug("Subscription Collection updated");
+            }
+            if (! err.message.includes("PreconditionFailedError")) {
+                message.ack();
             }
         };
 

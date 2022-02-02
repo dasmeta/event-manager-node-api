@@ -3,6 +3,7 @@
   "version": "1.0.5",
   "description": "Extended event publishing PubSub/Kafka package.",
   "main": "src/index.js",
+  "private": false,
   "scripts": {
     "start": "node src/index.js",
     "test": "echo 'ok'",
@@ -15,6 +16,8 @@
   "dependencies": {
     "@bugsnag/js": "^6.4.0",
     "@google-cloud/pubsub": "^2.5.0",
+    "amqplib": "^0.8.0",
+    "kafkajs": "^1.15.0",
     "mongodb": "^3.3.2",
     "uuid": "^3.3.3"
   },

@@ -13,6 +13,11 @@ module.exports = {
     debug(...args) {
         console.debug(...args);
     },
+    debugIfEnabled(...args) {
+        if (module.exports.isDebug()) {
+            module.exports.debug(...args);
+        }
+    },
     error(...args) {
         console.error(...args);
     },
