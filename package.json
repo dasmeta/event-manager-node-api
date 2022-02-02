@@ -1,6 +1,6 @@
 {
   "name": "@dasmeta/event-manager-node-api",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Extended event publishing PubSub/Kafka package.",
   "main": "src/index.js",
   "private": false,
