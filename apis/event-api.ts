@@ -165,7 +165,7 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [nn] Get entries that matches exactly your input
+         * @param {string} [e] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -178,7 +178,7 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsFindGet: async (limit?: number, sort?: string, start?: number, nn?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: any = {}): Promise<RequestArgs> => {
+        eventsFindGet: async (limit?: number, sort?: string, start?: number, e?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: any = {}): Promise<RequestArgs> => {
             const localVarPath = `/events/find`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -204,8 +204,8 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['_start'] = start;
             }
 
-            if (nn !== undefined) {
-                localVarQueryParameter['&#x3D;'] = nn;
+            if (e !== undefined) {
+                localVarQueryParameter['_e'] = e;
             }
 
             if (ne !== undefined) {
@@ -872,7 +872,7 @@ export const EventApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [nn] Get entries that matches exactly your input
+         * @param {string} [e] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -885,8 +885,8 @@ export const EventApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsFindGet(limit?: number, sort?: string, start?: number, nn?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Event>>> {
-            const localVarAxiosArgs = await EventApiAxiosParamCreator(configuration).eventsFindGet(limit, sort, start, nn, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
+        async eventsFindGet(limit?: number, sort?: string, start?: number, e?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<Event>>> {
+            const localVarAxiosArgs = await EventApiAxiosParamCreator(configuration).eventsFindGet(limit, sort, start, e, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1100,7 +1100,7 @@ export const EventApiFactory = function (configuration?: Configuration, basePath
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [nn] Get entries that matches exactly your input
+         * @param {string} [e] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -1113,8 +1113,8 @@ export const EventApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsFindGet(limit?: number, sort?: string, start?: number, nn?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any): AxiosPromise<Array<Event>> {
-            return EventApiFp(configuration).eventsFindGet(limit, sort, start, nn, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
+        eventsFindGet(limit?: number, sort?: string, start?: number, e?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any): AxiosPromise<Array<Event>> {
+            return EventApiFp(configuration).eventsFindGet(limit, sort, start, e, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
         },
         /**
          * Create a new record
@@ -1276,7 +1276,7 @@ export class EventApi extends BaseAPI {
      * @param {number} [limit] Maximum number of results possible
      * @param {string} [sort] Sort according to a specific field.
      * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-     * @param {string} [nn] Get entries that matches exactly your input
+     * @param {string} [e] Get entries that matches exactly your input
      * @param {string} [ne] Get records that are not equals to something
      * @param {string} [lt] Get record that are lower than a value
      * @param {string} [lte] Get records that are lower than or equal to a value
@@ -1290,8 +1290,8 @@ export class EventApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventApi
      */
-    public eventsFindGet(limit?: number, sort?: string, start?: number, nn?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any) {
-        return EventApiFp(this.configuration).eventsFindGet(limit, sort, start, nn, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
+    public eventsFindGet(limit?: number, sort?: string, start?: number, e?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: any) {
+        return EventApiFp(this.configuration).eventsFindGet(limit, sort, start, e, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Create a new record
