@@ -1,125 +1,45 @@
-# @dasmeta/microservice #
+## @
 
-Extended event publishing PubSub/Kafka package.
+This generator creates TypeScript/JavaScript client that utilizes [axios](https://github.com/axios/axios). The generated Node module can be used in the following environments:
 
-`yarn add @dasmeta/event-manager-node-api`
+Environment
+* Node.js
+* Webpack
+* Browserify
 
-### start local pub/sub
+Language level
+* ES5 - you must have a Promises/A+ library installed
+* ES6
 
-`$ gcloud beta emulators pubsub start`
-`$ DATASTORE_EMULATOR_HOST=localhost:8432 DATASTORE_PROJECT_ID=YOUR_GCLOUD_PROJECT_ID gcloud beta emulators datastore start`
+Module system
+* CommonJS
+* ES6 module system
 
+It can be used in both TypeScript and JavaScript. In TypeScript, the definition should be automatically resolved via `package.json`. ([Reference](http://www.typescriptlang.org/docs/handbook/typings-for-npm-packages.html))
 
+### Building
 
-#### example1.js
+To build and compile the typescript sources to javascript use:
 ```
-const { registerSubscriber, publish } = require("@dasmeta/event-manager-node-api");
-
-async function test1(data) {
-    console.log("test1", data);
-}
-
-async function test2(data) {
-    console.log("test2", data);
-}
-
-async function test3(data) {
-    console.log("test3", data);
-}
-
-registerSubscriber("dev.test", "dev-test_test1", test1);
-registerSubscriber("dev.test", "dev-test_test2", test2);
-registerSubscriber("dev.test.other", "dev-test_test3", test3);
-
-setInterval(async () => {
-    await publish("dev.test", { key: Date.now() });
-}, 300);
-
-setInterval(async () => {
-    await publish("dev.test.other", { key2: Date.now() });
-}, 500);
-
+npm install
+npm run build
 ```
 
-`PUBSUB_EMULATOR_HOST="localhost:8085" PUBSUB_PROJECT_ID="YOUR_GCLOUD_PROJECT_ID" GCLOUD_PROJECT="YOUR_GCLOUD_PROJECT_ID" node example1.js`
+### Publishing
 
-#### example2.js
-```
-const { publish, subscribeMulti } = require("@dasmeta/event-manager-node-api");
+First build the package then run ```npm publish```
 
+### Consuming
 
-function subscribe1() {
-    subscribeMulti("test", ["dev.test", "dev.test.other"], async (topic, data) => {
-        console.log('\x1b[31m%s %s\x1b[0m', " 1 ", topic, data);
-    });
-}
+navigate to the folder of your consuming project and run one of the following commands.
 
-function subscribe2() {
-    // resubscribe
-    subscribeMulti("test", ["dev.test"], async (topic, data) => {
-        console.log('\x1b[32m%s %s\x1b[0m', " 2 ", topic, data);
-    });
-
-    subscribeMulti("test3", ["dev.test", "dev.test.other"], async (topic, data) => {
-        console.log('\x1b[33m%s %s\x1b[0m', " 3 ", topic, data);
-    });
-}
-
-
-setInterval(async () => {
-    await publish("dev.test", { key: Date.now() });
-}, 200);
-
-setInterval(async () => {
-    await publish("dev.test.other", { key2: Date.now() });
-}, 300);
-
-subscribe1();
-
-setTimeout(async () => {
-    subscribe2();
-}, 20 * 1000);
+_published:_
 
 ```
-
-`PUBSUB_EMULATOR_HOST="localhost:8085" PUBSUB_PROJECT_ID="YOUR_GCLOUD_PROJECT_ID" GCLOUD_PROJECT="YOUR_GCLOUD_PROJECT_ID" node example2.js`
-
-#### example3.js
-```
-import { autoStart as AutoStart, subscribe as on, publish } from "@dasmeta/event-manager-node-api";
-
-@AutoStart
-class Example {
-    @on("dev.test")
-    async test1(data) {
-        console.log("test1", data);
-    }
-
-    @on("dev.test")
-    async test2(data) {
-        console.log("test2", data);
-    }
-
-    @on("dev.test.other")
-    async test3(data) {
-        console.log("test3", data);
-    }
-}
-
-setInterval(async () => {
-    await publish("dev.test", { key: Date.now() });
-}, 300);
-
-setInterval(async () => {
-    await publish("dev.test.other", { key2: Date.now() });
-}, 500);
-
+npm install @ --save
 ```
 
-`PUBSUB_EMULATOR_HOST="localhost:8085" PUBSUB_PROJECT_ID="YOUR_GCLOUD_PROJECT_ID" GCLOUD_PROJECT="YOUR_GCLOUD_PROJECT_ID" node example3.js`
+_unPublished (not recommended):_
 
-#### Kafka : run all examples with env variables 
-`MQ_CLIENT_NAME='Kafka' KAFKA_BROKERS='127.0.0.1:29092'`
-
-#### PubSub : run all examples with env variables 
-`PUBSUB_EMULATOR_HOST="localhost:8085" PUBSUB_PROJECT_ID="YOUR_GCLOUD_PROJECT_ID" GCLOUD_PROJECT="YOUR_GCLOUD_PROJECT_ID"`
+```
+npm install PATH_TO_GENERATED_PACKAGE --save

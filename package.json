@@ -1,28 +1,19 @@
 {
   "name": "@dasmeta/event-manager-node-api",
-  "version": "1.0.6",
+  "version": "2.0.0",
   "description": "Extended event publishing PubSub/Kafka package.",
-  "main": "src/index.js",
-  "private": false,
+  "main": "./dist/index.js",
+  "typings": "./dist/index.d.ts",
   "scripts": {
-    "start": "node src/index.js",
-    "test": "echo 'ok'",
-    "prettier": "prettier --write 'src/**/*.js'",
-    "kafkaExample1": "MQ_CLIENT_NAME='Kafka' KAFKA_BROKERS='127.0.0.1:29092' node example1.js",
-    "kafkaExample2": "MQ_CLIENT_NAME='Kafka' KAFKA_BROKERS='127.0.0.1:29092' node example2.js",
-    "PubSubExample1": "PUBSUB_EMULATOR_HOST='localhost:8085' PUBSUB_PROJECT_ID='YOUR_GCLOUD_PROJECT_ID' GCLOUD_PROJECT='YOUR_GCLOUD_PROJECT_ID' node example1.js",
-    "PubSubExample2": "PUBSUB_EMULATOR_HOST='localhost:8085' PUBSUB_PROJECT_ID='YOUR_GCLOUD_PROJECT_ID' GCLOUD_PROJECT='YOUR_GCLOUD_PROJECT_ID' node example2.js"
+    "build": "tsc --outDir dist/",
+    "prepublishOnly": "yarn build"
   },
   "dependencies": {
-    "@bugsnag/js": "^6.4.0",
-    "@google-cloud/pubsub": "^2.5.0",
-    "amqplib": "^0.8.0",
-    "kafkajs": "^1.15.0",
-    "mongodb": "^3.3.2",
-    "uuid": "^3.3.3"
+    "axios": "^0.21.1"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "@types/node": "^12.11.5",
+    "typescript": "^3.6.4"
   },
   "keywords": [
     "dasmeta",
