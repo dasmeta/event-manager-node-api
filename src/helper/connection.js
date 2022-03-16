@@ -24,8 +24,7 @@ const getConnection = async () => {
     }
     state.waiting = true;
 
-    const { username, password, host, port, db } = getOptions();
-    const url = `mongodb://${username || password ? `${username}:${password}@` : ""}${host}:${port}/${db}`;
+    const { url } = getOptions();
 
     const connection = await MongoClient.connect(url, {
         useNewUrlParser: true,
@@ -38,12 +37,10 @@ const getConnection = async () => {
 };
 
 const getOptions = () => {
-    const username = process.env["MONGODB_EVENT_USERNAME"] || "";
-    const password = process.env["MONGODB_EVENT_PASSWORD"] || "";
-    const host = process.env["MONGODB_EVENT_HOST"] || "localhost";
-    const port = process.env["MONGODB_EVENT_PORT"] || 27017;
-    const db = process.env["MONGODB_EVENT_DB"] || "event";
-    return { username, password, host, port, db };
+    return { 
+        url: process.env['DATABASE_URL_EVENT'] || "mongodb://localhost",
+        db: 'event'
+     };
 };
 const getDb = async () => {
     const connection = await getConnection();
