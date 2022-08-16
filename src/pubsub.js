@@ -2,15 +2,26 @@ const EventEmitter = require("events");
 const logger = require("./helper/logger");
 const {clientFactory} = require("./adapter/clientFactory");
 
-const mqClient = clientFactory.createClient();
-
 const topicsMap = new Map();
 const topicsWaiting = new Map();
 
 class TopicEmitter extends EventEmitter {}
 const topicEmitter = new TopicEmitter();
 
+const getMqClient = (function() {
+    let mqClient = null;
+
+    return async function () {
+        if (!mqClient) {
+            mqClient = clientFactory.createClient();
+        }
+        return mqClient;
+    }
+})();
+
 async function getTopic(topicName) {
+    const mqClient = await getMqClient();
+
     if (topicsMap.has(topicName)) {
         return mqClient.topic(topicName);
     }
