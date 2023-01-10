@@ -169,7 +169,7 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -182,7 +182,7 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventSubscriptionsGet: async (limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventSubscriptionsGet: async (limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/event-subscriptions`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -208,8 +208,8 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['_start'] = start;
             }
 
-            if ( !== undefined) {
-                localVarQueryParameter['&#x3D;'] = ;
+            if (eq !== undefined) {
+                localVarQueryParameter['_eq'] = eq;
             }
 
             if (ne !== undefined) {
@@ -757,7 +757,7 @@ export const EventSubscriptionApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -770,8 +770,8 @@ export const EventSubscriptionApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
-            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
+        async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -949,7 +949,7 @@ export const EventSubscriptionApiFactory = function (configuration?: Configurati
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -962,8 +962,8 @@ export const EventSubscriptionApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
-            return EventSubscriptionApiFp(configuration).eventSubscriptionsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
+        async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a record
@@ -1101,7 +1101,7 @@ export class EventSubscriptionApi extends BaseAPI {
      * @param {number} [limit] Maximum number of results possible
      * @param {string} [sort] Sort according to a specific field.
      * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-     * @param {string} [] Get entries that matches exactly your input
+     * @param {string} [eq] Get entries that matches exactly your input
      * @param {string} [ne] Get records that are not equals to something
      * @param {string} [lt] Get record that are lower than a value
      * @param {string} [lte] Get records that are lower than or equal to a value
@@ -1115,8 +1115,8 @@ export class EventSubscriptionApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventSubscriptionApi
      */
-    public async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
-        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
+    public async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete a record
