@@ -153,7 +153,7 @@ export const EventStatsApiAxiosParamCreator = function (configuration?: Configur
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -166,7 +166,7 @@ export const EventStatsApiAxiosParamCreator = function (configuration?: Configur
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventStatsGet: async (limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventStatsGet: async (limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/event-stats`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -192,8 +192,8 @@ export const EventStatsApiAxiosParamCreator = function (configuration?: Configur
                 localVarQueryParameter['_start'] = start;
             }
 
-            if ( !== undefined) {
-                localVarQueryParameter['&#x3D;'] = ;
+            if (eq !== undefined) {
+                localVarQueryParameter['_eq'] = eq;
             }
 
             if (ne !== undefined) {
@@ -476,7 +476,7 @@ export const EventStatsApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -489,8 +489,8 @@ export const EventStatsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventStatsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
-            const localVarAxiosArgs = await EventStatsApiAxiosParamCreator(configuration).eventStatsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
+        async eventStatsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
+            const localVarAxiosArgs = await EventStatsApiAxiosParamCreator(configuration).eventStatsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -589,7 +589,7 @@ export const EventStatsApiFactory = function (configuration?: Configuration, bas
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -602,8 +602,8 @@ export const EventStatsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventStatsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
-            return EventStatsApiFp(configuration).eventStatsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
+        async eventStatsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
+            return EventStatsApiFp(configuration).eventStatsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a single event-stats record
@@ -686,7 +686,7 @@ export class EventStatsApi extends BaseAPI {
      * @param {number} [limit] Maximum number of results possible
      * @param {string} [sort] Sort according to a specific field.
      * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-     * @param {string} [] Get entries that matches exactly your input
+     * @param {string} [eq] Get entries that matches exactly your input
      * @param {string} [ne] Get records that are not equals to something
      * @param {string} [lt] Get record that are lower than a value
      * @param {string} [lte] Get records that are lower than or equal to a value
@@ -700,8 +700,8 @@ export class EventStatsApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventStatsApi
      */
-    public async eventStatsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
-        return EventStatsApiFp(this.configuration).eventStatsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
+    public async eventStatsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
+        return EventStatsApiFp(this.configuration).eventStatsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete a single event-stats record

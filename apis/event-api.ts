@@ -71,7 +71,7 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -84,7 +84,7 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventsGet: async (limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventsGet: async (limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/events`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
@@ -110,8 +110,8 @@ export const EventApiAxiosParamCreator = function (configuration?: Configuration
                 localVarQueryParameter['_start'] = start;
             }
 
-            if ( !== undefined) {
-                localVarQueryParameter['&#x3D;'] = ;
+            if (eq !== undefined) {
+                localVarQueryParameter['_eq'] = eq;
             }
 
             if (ne !== undefined) {
@@ -632,7 +632,7 @@ export const EventApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
@@ -645,8 +645,8 @@ export const EventApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Event>>>> {
-            const localVarAxiosArgs = await EventApiAxiosParamCreator(configuration).eventsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
+        async eventsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<Event>>>> {
+            const localVarAxiosArgs = await EventApiAxiosParamCreator(configuration).eventsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -818,8 +818,8 @@ export const EventApiFactory = function (configuration?: Configuration, basePath
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Event>>> {
-            return EventApiFp(configuration).eventsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
+        async eventsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<Event>>> {
+            return EventApiFp(configuration).eventsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a record
@@ -936,7 +936,7 @@ export class EventApi extends BaseAPI {
      * @param {number} [limit] Maximum number of results possible
      * @param {string} [sort] Sort according to a specific field.
      * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-     * @param {string} [] Get entries that matches exactly your input
+     * @param {string} [eq] Get entries that matches exactly your input
      * @param {string} [ne] Get records that are not equals to something
      * @param {string} [lt] Get record that are lower than a value
      * @param {string} [lte] Get records that are lower than or equal to a value
@@ -950,8 +950,8 @@ export class EventApi extends BaseAPI {
      * @throws {RequiredError}
      * @memberof EventApi
      */
-    public async eventsGet(limit?: number, sort?: string, start?: number, ?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Event>>> {
-        return EventApiFp(this.configuration).eventsGet(limit, sort, start, , ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
+    public async eventsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<Event>>> {
+        return EventApiFp(this.configuration).eventsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete a record
