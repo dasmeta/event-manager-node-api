@@ -14,25 +14,25 @@
 /**
  * 
  * @export
- * @interface EventsRepublishfailBody
+ * @interface EventsubscriptionsMarksingleassuccessBody
  */
-export interface EventsRepublishfailBody {
+export interface EventsubscriptionsMarksingleassuccessBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsMarksingleassuccessBody
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsMarksingleassuccessBody
      */
     subscription?: string;
     /**
      * 
-     * @type {number}
-     * @memberof EventsRepublishfailBody
+     * @type {Array<string>}
+     * @memberof EventsubscriptionsMarksingleassuccessBody
      */
-    limit?: number;
+    events?: Array<string>;
 }

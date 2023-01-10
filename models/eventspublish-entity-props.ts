@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface EventsCalculatesinglestatsBody
+ * @interface EventspublishEntityProps
  */
-export interface EventsCalculatesinglestatsBody {
+export interface EventspublishEntityProps {
     /**
      * 
      * @type {string}
-     * @memberof EventsCalculatesinglestatsBody
+     * @memberof EventspublishEntityProps
      */
-    foo?: any;
+    entityId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventspublishEntityProps
+     */
+    entity?: string;
 }

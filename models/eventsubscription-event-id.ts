@@ -14,55 +14,67 @@
 /**
  * 
  * @export
- * @interface Event
+ * @interface EventsubscriptionEventId
  */
-export interface Event {
+export interface EventsubscriptionEventId {
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     id: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     traceId?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     dataSource?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     entity?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     entityId?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     messageId?: string;
     /**
      * 
      * @type {any}
-     * @memberof Event
+     * @memberof EventsubscriptionEventId
      */
     data?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionEventId
+     */
+    createdBy?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionEventId
+     */
+    updatedBy?: string;
 }

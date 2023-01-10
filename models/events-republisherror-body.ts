@@ -22,5 +22,17 @@ export interface EventsRepublisherrorBody {
      * @type {string}
      * @memberof EventsRepublisherrorBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsRepublisherrorBody
+     */
+    subscription?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventsRepublisherrorBody
+     */
+    limit?: number;
 }

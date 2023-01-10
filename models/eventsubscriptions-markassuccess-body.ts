@@ -14,13 +14,25 @@
 /**
  * 
  * @export
- * @interface EventsMarkassuccessBody
+ * @interface EventsubscriptionsMarkassuccessBody
  */
-export interface EventsMarkassuccessBody {
+export interface EventsubscriptionsMarkassuccessBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsMarkassuccessBody
+     * @memberof EventsubscriptionsMarkassuccessBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsMarkassuccessBody
+     */
+    subscription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsMarkassuccessBody
+     */
+    type?: string;
 }

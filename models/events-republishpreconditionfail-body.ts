@@ -22,5 +22,17 @@ export interface EventsRepublishpreconditionfailBody {
      * @type {string}
      * @memberof EventsRepublishpreconditionfailBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsRepublishpreconditionfailBody
+     */
+    subscription?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventsRepublishpreconditionfailBody
+     */
+    limit?: number;
 }

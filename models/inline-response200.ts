@@ -22,5 +22,5 @@ export interface InlineResponse200 {
      * @type {string}
      * @memberof InlineResponse200
      */
-    foo?: any;
+    foo?: string;
 }

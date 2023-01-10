@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface UpdateeventIdBody
+ * @interface EventsubscriptionsCleananomalyBody
  */
-export interface UpdateeventIdBody {
+export interface EventsubscriptionsCleananomalyBody {
     /**
      * 
      * @type {string}
-     * @memberof UpdateeventIdBody
+     * @memberof EventsubscriptionsCleananomalyBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsCleananomalyBody
+     */
+    subscription?: string;
 }

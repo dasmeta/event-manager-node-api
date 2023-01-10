@@ -14,13 +14,25 @@
 /**
  * 
  * @export
- * @interface EventsGeterrorBody
+ * @interface EventsubscriptionsPopulatemissingBody
  */
-export interface EventsGeterrorBody {
+export interface EventsubscriptionsPopulatemissingBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsGeterrorBody
+     * @memberof EventsubscriptionsPopulatemissingBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsPopulatemissingBody
+     */
+    subscription?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsPopulatemissingBody
+     */
+    as?: string;
 }
