@@ -11,58 +11,41 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */
+import { EventspublishEntityProps } from './eventspublish-entity-props';
 /**
  * 
  * @export
- * @interface Event
+ * @interface EventsPublishBody
  */
-export interface Event {
+export interface EventsPublishBody {
     /**
      * 
      * @type {string}
-     * @memberof Event
-     */
-    id: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    traceId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
+     * @memberof EventsPublishBody
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof Event
+     * @memberof EventsPublishBody
      */
     dataSource?: string;
     /**
      * 
-     * @type {string}
-     * @memberof Event
-     */
-    entity?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    entityId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof Event
-     */
-    messageId?: string;
-    /**
-     * 
      * @type {any}
-     * @memberof Event
+     * @memberof EventsPublishBody
      */
     data?: any;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsPublishBody
+     */
+    traceId?: string;
+    /**
+     * 
+     * @type {EventspublishEntityProps}
+     * @memberof EventsPublishBody
+     */
+    entityProps?: EventspublishEntityProps;
 }

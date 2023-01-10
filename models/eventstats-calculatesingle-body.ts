@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface EventsCleananomalyBody
+ * @interface EventstatsCalculatesingleBody
  */
-export interface EventsCleananomalyBody {
+export interface EventstatsCalculatesingleBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsCleananomalyBody
+     * @memberof EventstatsCalculatesingleBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventstatsCalculatesingleBody
+     */
+    subscription?: string;
 }

@@ -14,7 +14,7 @@
 import { Configuration } from "./configuration";
 // Some imports not used depending on template conditions
 // @ts-ignore
-import globalAxios, { AxiosPromise, AxiosInstance } from 'axios';
+import globalAxios, { AxiosRequestConfig, AxiosInstance } from 'axios';
 
 export const BASE_PATH = "http://localhost:1337".replace(/\/+$/, "");
 
@@ -36,7 +36,7 @@ export const COLLECTION_FORMATS = {
  */
 export interface RequestArgs {
     url: string;
-    options: any;
+    options: AxiosRequestConfig;
 }
 
 /**

@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface EventsMarksingleassuccessBody
+ * @interface EventsNonpersistentpublishBody
  */
-export interface EventsMarksingleassuccessBody {
+export interface EventsNonpersistentpublishBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsMarksingleassuccessBody
+     * @memberof EventsNonpersistentpublishBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof EventsNonpersistentpublishBody
+     */
+    data?: any;
 }

@@ -14,25 +14,31 @@
 /**
  * 
  * @export
- * @interface EventsRepublishfailBody
+ * @interface InlineResponse2001
  */
-export interface EventsRepublishfailBody {
+export interface InlineResponse2001 {
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof InlineResponse2001
      */
-    topic?: string;
+    id?: string;
     /**
      * 
-     * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @type {any}
+     * @memberof InlineResponse2001
      */
-    subscription?: string;
+    error?: any;
     /**
      * 
      * @type {number}
-     * @memberof EventsRepublishfailBody
+     * @memberof InlineResponse2001
      */
-    limit?: number;
+    count?: number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof InlineResponse2001
+     */
+    eventIds?: Array<string>;
 }

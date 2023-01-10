@@ -22,5 +22,17 @@ export interface EventsRepublishsingleerrorBody {
      * @type {string}
      * @memberof EventsRepublishsingleerrorBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsRepublishsingleerrorBody
+     */
+    subscription?: string;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof EventsRepublishsingleerrorBody
+     */
+    events?: Array<string>;
 }

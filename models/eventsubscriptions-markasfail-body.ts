@@ -14,25 +14,31 @@
 /**
  * 
  * @export
- * @interface EventsRepublishfailBody
+ * @interface EventsubscriptionsMarkasfailBody
  */
-export interface EventsRepublishfailBody {
+export interface EventsubscriptionsMarkasfailBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsMarkasfailBody
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsMarkasfailBody
      */
     subscription?: string;
     /**
      * 
-     * @type {number}
-     * @memberof EventsRepublishfailBody
+     * @type {string}
+     * @memberof EventsubscriptionsMarkasfailBody
      */
-    limit?: number;
+    start?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsMarkasfailBody
+     */
+    end?: string;
 }

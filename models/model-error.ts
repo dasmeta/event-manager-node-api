@@ -22,11 +22,11 @@ export interface ModelError {
      * @type {number}
      * @memberof ModelError
      */
-    code: any;
+    code: number;
     /**
      * 
      * @type {string}
      * @memberof ModelError
      */
-    message: any;
+    message: string;
 }

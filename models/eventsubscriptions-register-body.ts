@@ -14,25 +14,31 @@
 /**
  * 
  * @export
- * @interface EventsRepublishfailBody
+ * @interface EventsubscriptionsRegisterBody
  */
-export interface EventsRepublishfailBody {
+export interface EventsubscriptionsRegisterBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsRegisterBody
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof EventsRepublishfailBody
+     * @memberof EventsubscriptionsRegisterBody
      */
     subscription?: string;
     /**
      * 
-     * @type {number}
-     * @memberof EventsRepublishfailBody
+     * @type {string}
+     * @memberof EventsubscriptionsRegisterBody
      */
-    limit?: number;
+    handler?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventsubscriptionsRegisterBody
+     */
+    maxAttempts?: number;
 }

@@ -11,4 +11,6 @@
  * https://github.com/swagger-api/swagger-codegen.git
  * Do not edit the class manually.
  */export * from './apis/event-api';
+export * from './apis/event-stats-api';
+export * from './apis/event-subscription-api';
 

@@ -14,13 +14,13 @@
 /**
  * 
  * @export
- * @interface EventsMarkasfailBody
+ * @interface InlineResponse2002
  */
-export interface EventsMarkasfailBody {
+export interface InlineResponse2002 {
     /**
      * 
-     * @type {string}
-     * @memberof EventsMarkasfailBody
+     * @type {number}
+     * @memberof InlineResponse2002
      */
-    foo?: any;
+    count?: number;
 }

@@ -14,13 +14,19 @@
 /**
  * 
  * @export
- * @interface EventsMarkmissingaserrorBody
+ * @interface EventsubscriptionsMarkmissingaserrorBody
  */
-export interface EventsMarkmissingaserrorBody {
+export interface EventsubscriptionsMarkmissingaserrorBody {
     /**
      * 
      * @type {string}
-     * @memberof EventsMarkmissingaserrorBody
+     * @memberof EventsubscriptionsMarkmissingaserrorBody
      */
-    foo?: any;
+    topic?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsMarkmissingaserrorBody
+     */
+    subscription?: string;
 }

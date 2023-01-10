@@ -14,61 +14,67 @@
 /**
  * 
  * @export
- * @interface NewEvent
+ * @interface NewEventSubscription
  */
-export interface NewEvent {
+export interface NewEventSubscription {
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
-     */
-    traceId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
     topic?: string;
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
-    dataSource?: string;
+    subscription?: string;
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
-    entity?: string;
+    eventId?: string;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NewEventSubscription
+     */
+    isError?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NewEventSubscription
+     */
+    isPreconditionFail?: boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof NewEventSubscription
+     */
+    isSuccess?: boolean;
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
-    entityId?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof NewEvent
-     */
-    messageId?: string;
+    traceId?: string;
     /**
      * 
      * @type {any}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
-    data?: any;
+    error?: any;
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
     createdBy?: string;
     /**
      * 
      * @type {string}
-     * @memberof NewEvent
+     * @memberof NewEventSubscription
      */
     updatedBy?: string;
 }
