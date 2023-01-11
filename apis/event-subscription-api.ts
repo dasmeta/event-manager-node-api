@@ -22,7 +22,10 @@ import { EventsubscriptionsMarkassuccessBody } from '../models';
 import { EventsubscriptionsMarkmissingaserrorBody } from '../models';
 import { EventsubscriptionsMarksingleassuccessBody } from '../models';
 import { EventsubscriptionsPopulatemissingBody } from '../models';
-import { EventsubscriptionsRegisterBody } from '../models';
+import { EventsubscriptionsRecordfailureBody } from '../models';
+import { EventsubscriptionsRecordpreconditionfailureBody } from '../models';
+import { EventsubscriptionsRecordstartBody } from '../models';
+import { EventsubscriptionsRecordsuccessBody } from '../models';
 import { InlineResponse200 } from '../models';
 import { InlineResponse2001 } from '../models';
 import { NewEventSubscription } from '../models';
@@ -246,6 +249,73 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
 
             if (nin) {
                 localVarQueryParameter['_nin'] = nin;
+            }
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Check weather max attempt has reached for precondition failed events
+         * @param {string} topic Name of the topic
+         * @param {string} subscription Name of the subscription
+         * @param {string} eventId Id of an event
+         * @param {number} [maxAttempts] Max attempts count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eventSubscriptionsHasReachedMaxAttemptsGet: async (topic: string, subscription: string, eventId: string, maxAttempts?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'topic' is not null or undefined
+            if (topic === null || topic === undefined) {
+                throw new RequiredError('topic','Required parameter topic was null or undefined when calling eventSubscriptionsHasReachedMaxAttemptsGet.');
+            }
+            // verify required parameter 'subscription' is not null or undefined
+            if (subscription === null || subscription === undefined) {
+                throw new RequiredError('subscription','Required parameter subscription was null or undefined when calling eventSubscriptionsHasReachedMaxAttemptsGet.');
+            }
+            // verify required parameter 'eventId' is not null or undefined
+            if (eventId === null || eventId === undefined) {
+                throw new RequiredError('eventId','Required parameter eventId was null or undefined when calling eventSubscriptionsHasReachedMaxAttemptsGet.');
+            }
+            const localVarPath = `/event-subscriptions/has-reached-max-attempts`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+
+            if (topic !== undefined) {
+                localVarQueryParameter['topic'] = topic;
+            }
+
+            if (subscription !== undefined) {
+                localVarQueryParameter['subscription'] = subscription;
+            }
+
+            if (eventId !== undefined) {
+                localVarQueryParameter['eventId'] = eventId;
+            }
+
+            if (maxAttempts !== undefined) {
+                localVarQueryParameter['maxAttempts'] = maxAttempts;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -661,17 +731,149 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
             };
         },
         /**
-         * Register subscription
-         * @param {EventsubscriptionsRegisterBody} body 
+         * Update status when event failed
+         * @param {EventsubscriptionsRecordfailureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventSubscriptionsRegisterPost: async (body: EventsubscriptionsRegisterBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventSubscriptionsRecordFailurePost: async (body: EventsubscriptionsRecordfailureBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'body' is not null or undefined
             if (body === null || body === undefined) {
-                throw new RequiredError('body','Required parameter body was null or undefined when calling eventSubscriptionsRegisterPost.');
+                throw new RequiredError('body','Required parameter body was null or undefined when calling eventSubscriptionsRecordFailurePost.');
             }
-            const localVarPath = `/event-subscriptions/register`;
+            const localVarPath = `/event-subscriptions/record-failure`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update status when event precondition faileds
+         * @param {EventsubscriptionsRecordpreconditionfailureBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eventSubscriptionsRecordPreconditionFailurePost: async (body: EventsubscriptionsRecordpreconditionfailureBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling eventSubscriptionsRecordPreconditionFailurePost.');
+            }
+            const localVarPath = `/event-subscriptions/record-precondition-failure`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update status when event starts
+         * @param {EventsubscriptionsRecordstartBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eventSubscriptionsRecordStartPost: async (body: EventsubscriptionsRecordstartBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling eventSubscriptionsRecordStartPost.');
+            }
+            const localVarPath = `/event-subscriptions/record-start`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, 'https://example.com');
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+            const localVarRequestOptions :AxiosRequestConfig = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            // authentication bearerAuth required
+
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            const query = new URLSearchParams(localVarUrlObj.search);
+            for (const key in localVarQueryParameter) {
+                query.set(key, localVarQueryParameter[key]);
+            }
+            for (const key in options.params) {
+                query.set(key, options.params[key]);
+            }
+            localVarUrlObj.search = (new URLSearchParams(query)).toString();
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            const needsSerialization = (typeof body !== "string") || localVarRequestOptions.headers['Content-Type'] === 'application/json';
+            localVarRequestOptions.data =  needsSerialization ? JSON.stringify(body !== undefined ? body : {}) : (body || "");
+
+            return {
+                url: localVarUrlObj.pathname + localVarUrlObj.search + localVarUrlObj.hash,
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Update status when event succeed
+         * @param {EventsubscriptionsRecordsuccessBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        eventSubscriptionsRecordSuccessPost: async (body: EventsubscriptionsRecordsuccessBody, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'body' is not null or undefined
+            if (body === null || body === undefined) {
+                throw new RequiredError('body','Required parameter body was null or undefined when calling eventSubscriptionsRecordSuccessPost.');
+            }
+            const localVarPath = `/event-subscriptions/record-success`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, 'https://example.com');
             let baseOptions;
@@ -772,6 +974,22 @@ export const EventSubscriptionApiFp = function(configuration?: Configuration) {
          */
         async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<InlineResponse200>>> {
             const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Check weather max attempt has reached for precondition failed events
+         * @param {string} topic Name of the topic
+         * @param {string} subscription Name of the subscription
+         * @param {string} eventId Id of an event
+         * @param {number} [maxAttempts] Max attempts count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsHasReachedMaxAttemptsGet(topic: string, subscription: string, eventId: string, maxAttempts?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsHasReachedMaxAttemptsGet(topic, subscription, eventId, maxAttempts, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -896,13 +1114,52 @@ export const EventSubscriptionApiFp = function(configuration?: Configuration) {
             };
         },
         /**
-         * Register subscription
-         * @param {EventsubscriptionsRegisterBody} body 
+         * Update status when event failed
+         * @param {EventsubscriptionsRecordfailureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsRegisterPost(body: EventsubscriptionsRegisterBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
-            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsRegisterPost(body, options);
+        async eventSubscriptionsRecordFailurePost(body: EventsubscriptionsRecordfailureBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsRecordFailurePost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Update status when event precondition faileds
+         * @param {EventsubscriptionsRecordpreconditionfailureBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordPreconditionFailurePost(body: EventsubscriptionsRecordpreconditionfailureBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsRecordPreconditionFailurePost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Update status when event starts
+         * @param {EventsubscriptionsRecordstartBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordStartPost(body: EventsubscriptionsRecordstartBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsRecordStartPost(body, options);
+            return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
+                const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
+                return axios.request(axiosRequestArgs);
+            };
+        },
+        /**
+         * Update status when event succeed
+         * @param {EventsubscriptionsRecordsuccessBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordSuccessPost(body: EventsubscriptionsRecordsuccessBody, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<any>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsRecordSuccessPost(body, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -964,6 +1221,18 @@ export const EventSubscriptionApiFactory = function (configuration?: Configurati
          */
         async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig): Promise<AxiosResponse<InlineResponse200>> {
             return EventSubscriptionApiFp(configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Check weather max attempt has reached for precondition failed events
+         * @param {string} topic Name of the topic
+         * @param {string} subscription Name of the subscription
+         * @param {string} eventId Id of an event
+         * @param {number} [maxAttempts] Max attempts count
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsHasReachedMaxAttemptsGet(topic: string, subscription: string, eventId: string, maxAttempts?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsHasReachedMaxAttemptsGet(topic, subscription, eventId, maxAttempts, options).then((request) => request(axios, basePath));
         },
         /**
          * Delete a record
@@ -1048,13 +1317,40 @@ export const EventSubscriptionApiFactory = function (configuration?: Configurati
             return EventSubscriptionApiFp(configuration).eventSubscriptionsPost(body, options).then((request) => request(axios, basePath));
         },
         /**
-         * Register subscription
-         * @param {EventsubscriptionsRegisterBody} body 
+         * Update status when event failed
+         * @param {EventsubscriptionsRecordfailureBody} body 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsRegisterPost(body: EventsubscriptionsRegisterBody, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
-            return EventSubscriptionApiFp(configuration).eventSubscriptionsRegisterPost(body, options).then((request) => request(axios, basePath));
+        async eventSubscriptionsRecordFailurePost(body: EventsubscriptionsRecordfailureBody, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsRecordFailurePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update status when event precondition faileds
+         * @param {EventsubscriptionsRecordpreconditionfailureBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordPreconditionFailurePost(body: EventsubscriptionsRecordpreconditionfailureBody, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsRecordPreconditionFailurePost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update status when event starts
+         * @param {EventsubscriptionsRecordstartBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordStartPost(body: EventsubscriptionsRecordstartBody, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsRecordStartPost(body, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Update status when event succeed
+         * @param {EventsubscriptionsRecordsuccessBody} body 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async eventSubscriptionsRecordSuccessPost(body: EventsubscriptionsRecordsuccessBody, options?: AxiosRequestConfig): Promise<AxiosResponse<any>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsRecordSuccessPost(body, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -1117,6 +1413,19 @@ export class EventSubscriptionApi extends BaseAPI {
      */
     public async eventSubscriptionsGet(limit?: number, sort?: string, start?: number, eq?: string, ne?: string, lt?: string, lte?: string, gt?: string, gte?: string, contains?: string, containss?: string, _in?: Array<string>, nin?: Array<string>, options?: AxiosRequestConfig) : Promise<AxiosResponse<InlineResponse200>> {
         return EventSubscriptionApiFp(this.configuration).eventSubscriptionsGet(limit, sort, start, eq, ne, lt, lte, gt, gte, contains, containss, _in, nin, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Check weather max attempt has reached for precondition failed events
+     * @param {string} topic Name of the topic
+     * @param {string} subscription Name of the subscription
+     * @param {string} eventId Id of an event
+     * @param {number} [maxAttempts] Max attempts count
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventSubscriptionApi
+     */
+    public async eventSubscriptionsHasReachedMaxAttemptsGet(topic: string, subscription: string, eventId: string, maxAttempts?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsHasReachedMaxAttemptsGet(topic, subscription, eventId, maxAttempts, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * Delete a record
@@ -1210,13 +1519,43 @@ export class EventSubscriptionApi extends BaseAPI {
         return EventSubscriptionApiFp(this.configuration).eventSubscriptionsPost(body, options).then((request) => request(this.axios, this.basePath));
     }
     /**
-     * Register subscription
-     * @param {EventsubscriptionsRegisterBody} body 
+     * Update status when event failed
+     * @param {EventsubscriptionsRecordfailureBody} body 
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventSubscriptionApi
      */
-    public async eventSubscriptionsRegisterPost(body: EventsubscriptionsRegisterBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
-        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsRegisterPost(body, options).then((request) => request(this.axios, this.basePath));
+    public async eventSubscriptionsRecordFailurePost(body: EventsubscriptionsRecordfailureBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsRecordFailurePost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Update status when event precondition faileds
+     * @param {EventsubscriptionsRecordpreconditionfailureBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventSubscriptionApi
+     */
+    public async eventSubscriptionsRecordPreconditionFailurePost(body: EventsubscriptionsRecordpreconditionfailureBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsRecordPreconditionFailurePost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Update status when event starts
+     * @param {EventsubscriptionsRecordstartBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventSubscriptionApi
+     */
+    public async eventSubscriptionsRecordStartPost(body: EventsubscriptionsRecordstartBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsRecordStartPost(body, options).then((request) => request(this.axios, this.basePath));
+    }
+    /**
+     * Update status when event succeed
+     * @param {EventsubscriptionsRecordsuccessBody} body 
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof EventSubscriptionApi
+     */
+    public async eventSubscriptionsRecordSuccessPost(body: EventsubscriptionsRecordsuccessBody, options?: AxiosRequestConfig) : Promise<AxiosResponse<any>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsRecordSuccessPost(body, options).then((request) => request(this.axios, this.basePath));
     }
 }

@@ -805,7 +805,7 @@ export const EventApiFactory = function (configuration?: Configuration, basePath
          * @param {number} [limit] Maximum number of results possible
          * @param {string} [sort] Sort according to a specific field.
          * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
-         * @param {string} [] Get entries that matches exactly your input
+         * @param {string} [eq] Get entries that matches exactly your input
          * @param {string} [ne] Get records that are not equals to something
          * @param {string} [lt] Get record that are lower than a value
          * @param {string} [lte] Get records that are lower than or equal to a value
