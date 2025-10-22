@@ -118,10 +118,12 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
          * Get events with errors
          * @param {string} topic Name of the topic
          * @param {string} subscription Name of the subscription
+         * @param {number} [limit] Maximum number of results possible
+         * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        eventSubscriptionsErrorsGet: async (topic: string, subscription: string, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
+        eventSubscriptionsErrorsGet: async (topic: string, subscription: string, limit?: number, start?: number, options: AxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'topic' is not null or undefined
             if (topic === null || topic === undefined) {
                 throw new RequiredError('topic','Required parameter topic was null or undefined when calling eventSubscriptionsErrorsGet.');
@@ -149,6 +151,14 @@ export const EventSubscriptionApiAxiosParamCreator = function (configuration?: C
 
             if (subscription !== undefined) {
                 localVarQueryParameter['subscription'] = subscription;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['_limit'] = limit;
+            }
+
+            if (start !== undefined) {
+                localVarQueryParameter['_start'] = start;
             }
 
             const query = new URLSearchParams(localVarUrlObj.search);
@@ -944,11 +954,13 @@ export const EventSubscriptionApiFp = function(configuration?: Configuration) {
          * Get events with errors
          * @param {string} topic Name of the topic
          * @param {string} subscription Name of the subscription
+         * @param {number} [limit] Maximum number of results possible
+         * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsErrorsGet(topic: string, subscription: string, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<InlineResponse2001>>>> {
-            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsErrorsGet(topic, subscription, options);
+        async eventSubscriptionsErrorsGet(topic: string, subscription: string, limit?: number, start?: number, options?: AxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => Promise<AxiosResponse<Array<InlineResponse2001>>>> {
+            const localVarAxiosArgs = await EventSubscriptionApiAxiosParamCreator(configuration).eventSubscriptionsErrorsGet(topic, subscription, limit, start, options);
             return (axios: AxiosInstance = globalAxios, basePath: string = BASE_PATH) => {
                 const axiosRequestArgs :AxiosRequestConfig = {...localVarAxiosArgs.options, url: basePath + localVarAxiosArgs.url};
                 return axios.request(axiosRequestArgs);
@@ -1195,11 +1207,13 @@ export const EventSubscriptionApiFactory = function (configuration?: Configurati
          * Get events with errors
          * @param {string} topic Name of the topic
          * @param {string} subscription Name of the subscription
+         * @param {number} [limit] Maximum number of results possible
+         * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async eventSubscriptionsErrorsGet(topic: string, subscription: string, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<InlineResponse2001>>> {
-            return EventSubscriptionApiFp(configuration).eventSubscriptionsErrorsGet(topic, subscription, options).then((request) => request(axios, basePath));
+        async eventSubscriptionsErrorsGet(topic: string, subscription: string, limit?: number, start?: number, options?: AxiosRequestConfig): Promise<AxiosResponse<Array<InlineResponse2001>>> {
+            return EventSubscriptionApiFp(configuration).eventSubscriptionsErrorsGet(topic, subscription, limit, start, options).then((request) => request(axios, basePath));
         },
         /**
          * 
@@ -1385,12 +1399,14 @@ export class EventSubscriptionApi extends BaseAPI {
      * Get events with errors
      * @param {string} topic Name of the topic
      * @param {string} subscription Name of the subscription
+     * @param {number} [limit] Maximum number of results possible
+     * @param {number} [start] Skip a specific number of entries (especially useful for pagination)
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
      * @memberof EventSubscriptionApi
      */
-    public async eventSubscriptionsErrorsGet(topic: string, subscription: string, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<InlineResponse2001>>> {
-        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsErrorsGet(topic, subscription, options).then((request) => request(this.axios, this.basePath));
+    public async eventSubscriptionsErrorsGet(topic: string, subscription: string, limit?: number, start?: number, options?: AxiosRequestConfig) : Promise<AxiosResponse<Array<InlineResponse2001>>> {
+        return EventSubscriptionApiFp(this.configuration).eventSubscriptionsErrorsGet(topic, subscription, limit, start, options).then((request) => request(this.axios, this.basePath));
     }
     /**
      * 
