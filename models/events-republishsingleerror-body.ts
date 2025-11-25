@@ -35,4 +35,16 @@ export interface EventsRepublishsingleerrorBody {
      * @memberof EventsRepublishsingleerrorBody
      */
     events?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsRepublishsingleerrorBody
+     */
+    message?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventsRepublishsingleerrorBody
+     */
+    limit?: number;
 }
