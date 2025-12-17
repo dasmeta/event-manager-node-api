@@ -6,7 +6,7 @@
   "typings": "./dist/index.d.ts",
   "scripts": {
     "build": "tsc --outDir dist/",
-    "prepublishOnly": "yarn build"
+    "prepublishOnly": "npm build"
   },
   "dependencies": {
     "axios": "^0.21.1"
