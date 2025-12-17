@@ -4,9 +4,13 @@
   "description": "Extended event publishing PubSub/Kafka package.",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dasmeta/event-manager-node-api.git"
+  },
   "scripts": {
     "build": "tsc --outDir dist/",
-    "prepublishOnly": "npm build"
+    "prepublishOnly": "npm run build"
   },
   "dependencies": {
     "axios": "^0.21.1"
