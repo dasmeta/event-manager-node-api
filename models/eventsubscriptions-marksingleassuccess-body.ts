@@ -35,4 +35,10 @@ export interface EventsubscriptionsMarksingleassuccessBody {
      * @memberof EventsubscriptionsMarksingleassuccessBody
      */
     events?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventsubscriptionsMarksingleassuccessBody
+     */
+    message?: string;
 }
