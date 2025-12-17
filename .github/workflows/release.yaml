@@ -16,5 +16,8 @@ jobs:
         with:
           node-version: '24'
           registry-url: 'https://registry.npmjs.org'
-      - run: yarn install --frozen-lockfile
-      - run: yarn publish --access=public
+      # - run: npm --version
+      - run: npm install
+      # - run: yarn install --frozen-lockfile 
+      # - run: yarn publish --access=public
+      - run: npm publish --access=public
