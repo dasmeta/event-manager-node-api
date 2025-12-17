@@ -16,6 +16,5 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/
-      - run: yarn ci
       - run: yarn install --frozen-lockfile
       - run: yarn publish --access=public
